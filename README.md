@@ -16,4 +16,36 @@ CREATE DATABASE name; => importent semicolen
 
 ---connect to concreat database
 tsql --help => show commands
-psql -h localhost -p 5432 -U postgres test
+psql -h localhost -p 5432 -U postgres test => localhost/url to database
+
+\c <database name> => connect to database, switch between database
+
+DROP DATABASE => delete database
+
+---CREATE USER with rights
+--exist user
+ALTER USER user_name CREATEDB;
+ALTER USER user_name CREATEDB CREATEROLE LOGIN;
+--new user
+CREATE ROLE user_name PASSWORD 'tYPe_YoUr_PaSSwOrD' NOSUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+sudo -u postgres createuser --createdb --createrole --pwprompt user_name
+
+NOSUPERUSER - the user being created does not have superuser rights (like the postgres user, recommended).
+CREATEDB - the user being created can create databases which it will own.
+CREATEROLE - the user being created can create roles (logins) for objects it owns or has specific access to (like databases it has created).
+INHERIT - the user being created inherits some default options, optional.
+LOGIN - the user being created has the right to log in.
+
+\du => list of owners with roles
+DROP USER <name> => delete user Data Database of user should be delete
+
+---CREATE TABLE IN DATABASE
+-- create table without constrains =>CREATE TABLE <name_table> (column name + data type + constrains if any) => example CREATE TABLE person (id int, first_name VARCHAR(50), last_anem VARCHAR(50), gender VARCHAR(6), data_of_birth TIMESTAMP/DATE)
+-type => int => number, VARCHAR(40) => 40 character string			link https://www.postgresql.org/docs/current/datatype.html
+	when we use "(" and enter we can write in next line CREATE TABLE person (
+										id INT,
+										first_Name VARCHAR(50),...)
+	check list of table in database \d deeper \d <table name>
+-- create table with constrains => example CREATE TABLE person (id BIGSERIAL NOT NULL PRIMARY KEY, first_name VARCHAR(50) NOT NULL, last_anem VARCHAR(50) NOT NULL, gender VARCHAR(6) NOT NULL, data_of_birth TIMESTAMP/DATE NOT NULL)
+	type BIGSERIAL generate sequence in table
+DROP TABLE <name> => delete table
