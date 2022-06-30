@@ -40,12 +40,24 @@ LOGIN - the user being created has the right to log in.
 DROP USER <name> => delete user Data Database of user should be delete
 
 ---CREATE TABLE IN DATABASE
--- create table without constrains =>CREATE TABLE <name_table> (column name + data type + constrains if any) => example CREATE TABLE person (id int, first_name VARCHAR(50), last_anem VARCHAR(50), gender VARCHAR(6), data_of_birth TIMESTAMP/DATE)
--type => int => number, VARCHAR(40) => 40 character string			link https://www.postgresql.org/docs/current/datatype.html
+-- create table without constrains =>CREATE TABLE <name_table> (column name + data type + constrains if any) => 
+	example: CREATE TABLE person (id int, 
+					first_name VARCHAR(50), 
+					last_anem VARCHAR(50), 
+					gender VARCHAR(6), 
+					data_of_birth TIMESTAMP/DATE)
+-example type => int => number, VARCHAR(40) => 40 character string			link https://www.postgresql.org/docs/current/datatype.html
 	when we use "(" and enter we can write in next line CREATE TABLE person (
 										id INT,
 										first_Name VARCHAR(50),...)
-	check list of table in database \d deeper \d <table name>
--- create table with constrains => example CREATE TABLE person (id BIGSERIAL NOT NULL PRIMARY KEY, first_name VARCHAR(50) NOT NULL, last_anem VARCHAR(50) NOT NULL, gender VARCHAR(6) NOT NULL, data_of_birth TIMESTAMP/DATE NOT NULL)
+\d deeper \d <table name> check list of table in database 
+	
+-- create table with constrains => 
+	example CREATE TABLE person (id BIGSERIAL NOT NULL PRIMARY KEY, 
+					first_name VARCHAR(50) NOT NULL, 
+					last_anem VARCHAR(50) NOT NULL, 
+					gender VARCHAR(6) NOT NULL, 
+					data_of_birth TIMESTAMP/DATE NOT NULL,
+					email VARCHAR(150))
 	type BIGSERIAL generate sequence in table
 DROP TABLE <name> => delete table
