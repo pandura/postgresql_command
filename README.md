@@ -51,6 +51,7 @@ DROP USER <name> => delete user Data Database of user should be delete
 										id INT,
 										first_Name VARCHAR(50),...)
 \d deeper \d <table name> check list of table in database 
+\dt table list
 	
 -- create table with constrains => 
 	example CREATE TABLE person (id BIGSERIAL NOT NULL PRIMARY KEY, 
@@ -61,3 +62,11 @@ DROP USER <name> => delete user Data Database of user should be delete
 					email VARCHAR(150))
 	type BIGSERIAL generate sequence in table
 DROP TABLE <name> => delete table
+
+---Insert Into table
+--INSERT INTO <tablename>(columns1, columns2, coluns3, ...) VALUES (value1, value2, value3, ...)
+	example => INSERT INTO person (first_name, last_name, gender, data_of_birth) VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => posible is in 2 lines 
+		INSERT INTO person (first_name, last_name, gender, data_of_birth) <enter>
+			VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => possible multiple data VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ), ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' )
+
+check tables SELECT * FROM person
