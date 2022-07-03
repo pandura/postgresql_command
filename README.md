@@ -69,4 +69,26 @@ DROP TABLE <name> => delete table
 		INSERT INTO person (first_name, last_name, gender, data_of_birth) <enter>
 			VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => possible multiple data VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ), ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' )
 
+
+
 check tables SELECT * FROM person
+
+--DROPT TABKE <talbe name>;
+
+DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
+"\i" <path> example wsl in widnow =>  /mnt/c/Users/48606/Downloads/person.sql  => download file to postgresql  
+
+
+---SELECT <column> FROM <table name>
+--ORDER BY
+	SELECT <column> FROM <Table name> ORDER BY <column name> ASC/DESC	
+
+
+
+
+
+
+
+
+linux command 
+-pwd path to current folder
