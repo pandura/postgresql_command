@@ -82,7 +82,53 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 ---SELECT <column> FROM <table name>
 --ORDER BY
 	SELECT <column> FROM <Table name> ORDER BY <column name> ASC/DESC	
+--DELETE DUPLICATE
+- DISTINCT - unique value of column
+	SELECT DISTINCT <column> FROM <Table name> ORDER BY <column name> ASC/DESC
+--WHERE condition
+	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' 
+-Anather condition
+	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' AND / OR <name of column> = '<string>/ number'
+	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' AND / OR (<name of column> = '<string>/ number' OR <name of column> = '<string>/ number')
+---Comparison
+-- SELECT 1 = 1; true
+-- SELECT 1 > 0; true
+-- SELECT 1 >= 2; true
+-- SELECT 1 <> 2; true => <> NOT
 
+--- LIMIT
+	SELECT <column> FROM <table name> LIMIT 5;
+--- OFFSET - exclude
+	SELECT <column> FROM <table name> OFFSET 5;
+	SELECT <column> FROM <table name> OFFSET 5 LIMIT 5; => exclude first 5 then limit to 5
+--- FETCH => limit/exclude => use seldom
+	SELECT <column> FROM <table name> OFFSET <Number> FETCH FIRST 5 ROW ONLY;
+	OFFSET start { ROW | ROWS } FETCH { FIRST | NEXT } [ row_count ] { ROW | ROWS } ONLY
+--- IN => array of values
+
+	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' OR <name of column> = '<string>/ number'
+	SELECT <column> FROM <Table name> WHERE <name of column> IN ('<value from column>', '<value from column>', '<value from column>')
+
+--- BETWEEN
+	SELECT <column> FROM <Table name> WHERE <name of column> BETWEEN DATE '2001-01-01' AND '2022-01-01'
+
+--- LIKE
+	SELECT <column> FROM <Table name> WHERE <name of column> LIKE ('<pattern>')
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.com'); => % any character
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.%'); => % any character
+	example => SELECT * FROM person WHERE email LIKE '______'; => _ concreate quantity of character in this case 6
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.__'); => _ concreate quantity of character in this case 2
+--- ILIKE => like LIKE case sensenitive
+
+--- GROUP BY => agregate data base of column
+	SELECT <column> function() FROM <Table name> GROUP BY <column>
+	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth
+
+	function of agregate https://www.postgresql.org/docs/9.5/functions-aggregate.html
+
+--- GROUP BY... HAVING => GROUP BY WITH CONDITION
+	SELECT <column> function(*) FROM <Table name> GROUP BY <column> HAVING COUNT(*) > 5
+	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5
 
 
 
