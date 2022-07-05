@@ -130,6 +130,39 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	SELECT <column> function(*) FROM <Table name> GROUP BY <column> HAVING COUNT(*) > 5
 	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5
 
+---Agregation
+-- MAX()
+	SELECT MAX(<column>) FROM <table name>;
+	example => SELECT MAX(price) FROM car;
+-- MIN()
+	SELECT MIN(<column>) FROM <table name>;
+	example => SELECT MIN(price) FROM car;
+-- AVG()
+	SELECT AVG(<column>) FROM <table name>;
+	example => SELECT AVG(price) FROM car;
+-- SUM()
+	SELECT SUM(<column>) FROM <table name>;
+	example => SELECT SUM(price) FROM car;
+-- ROUND(AVG())
+	SELECT ROUND(AVG(<column>), decimal) FROM <table name>;
+	example => SELECT ROUND(AVG(price), 2) FROM car;
+--Agregation wit GROUP BY
+-- MAX()
+	SELECT <column_name>, ... MAX(<column>) FROM <table name> GROUP BY <column_name>;
+	example => SELECT make, model,  MAX(price) FROM car GROUP BY make, model;
+
+---ARTHIMETIC OPERATORS - ROUND
+
+	SELECT price price * 0.10 FROM car; => add additonal column ?column? with 10% price
+	SELECT price ROUND(price * 0.10) FROM car;
+	
+	SELECT price ROUND(price * 0.10), ROUND(price - ROUND(price * 0.1, 2), 2) FROM car;
+
+---ALIAS
+	SELECT price price * 0.10 AS <alias>FROM car;
+	example SELECT price ROUND(price * 0.10) AS <alias>, ROUND(price - ROUND(price * 0.1, 2), 2) AS <alias> FROM car;
+
+
 
 
 
