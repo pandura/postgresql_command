@@ -73,6 +73,8 @@ DROP TABLE <name> => delete table
 
 check tables SELECT * FROM person
 
+INSERT INTO person(email) VALUES ('test') => possible if other column dont have null
+
 --DROPT TABKE <talbe name>;
 
 DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
@@ -162,10 +164,27 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	SELECT price price * 0.10 AS <alias>FROM car;
 	example SELECT price ROUND(price * 0.10) AS <alias>, ROUND(price - ROUND(price * 0.1, 2), 2) AS <alias> FROM car;
 
+---COALESCE => default value if is not present
+
+	example => SELECT COALESCE(null, 1) => if null default 1
+	example => SELECT COALESCE(null, null, 1) if first value is not present try secound
+	
+	example => SELECT COALESCE(<colum nema>, 1) FROM <Table name> => if column name === null ? 1
+		SELECT COALESCE(email, "Email not provided") FROM person
+
+---NULLIF => if first argument is not equel second return first if is will be null => help secure error in devision by 0
+	example => SELECT NULLIF(1, 10); result 1
+	example SELECT 10/ NULLIF(0, 0) => null not error
+	example SELECT COALESCE(10 / NULLIF(0, 0), 0);
+
+---Timestamps => https://www.postgresql.org/docs/current/datatype-datetime.html
+	example => SELECT NOW()
+	example => SELECT NOW()::DATE; y-m-d
+	example => SELECT NOW()::TIME; h:m:s
 
 
 
-
+what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
 
