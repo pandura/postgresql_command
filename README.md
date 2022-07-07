@@ -188,5 +188,6 @@ what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
 
+
 linux command 
 -pwd path to current folder
