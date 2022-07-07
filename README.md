@@ -181,11 +181,16 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	example => SELECT NOW()
 	example => SELECT NOW()::DATE; y-m-d
 	example => SELECT NOW()::TIME; h:m:s
+--Subtracting dates
+	example => SELECT NOW() -/+  INTERVAL '1 YEAR';
+	example => SELECT NOW() -/+  INTERVAL '1 MONTHS';
+	example => SELECT NOW() -/+  INTERVAL '1 DAYS';
+	example => SELECT NOW()::DATE -/+  INTERVAL '1 DAYS';
+	example => SELECT (NOW() -/+  INTERVAL '1 DAYS')::DATE;
 
 
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
-
 
 
 
