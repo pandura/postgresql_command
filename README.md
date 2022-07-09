@@ -181,12 +181,19 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	example => SELECT NOW()
 	example => SELECT NOW()::DATE; y-m-d
 	example => SELECT NOW()::TIME; h:m:s
---Subtracting dates
+--Subtracting dates => add or minus date
 	example => SELECT NOW() -/+  INTERVAL '1 YEAR';
 	example => SELECT NOW() -/+  INTERVAL '1 MONTHS';
 	example => SELECT NOW() -/+  INTERVAL '1 DAYS';
 	example => SELECT NOW()::DATE -/+  INTERVAL '1 DAYS';
 	example => SELECT (NOW() -/+  INTERVAL '1 DAYS')::DATE;
+--Extract time => separetl from date
+	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW())
+
+--AGE FUNCTION => calculate from now
+	SELECT <column_name> AGE(NOW(), <column with type dATE>) FROM <data_name>
+	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person
+	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person
 
 
 
