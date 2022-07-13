@@ -195,7 +195,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person
 	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person
 
-KEY
+PrimaryKEY
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
