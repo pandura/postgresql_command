@@ -75,7 +75,7 @@ check tables SELECT * FROM person
 
 INSERT INTO person(email) VALUES ('test') => possible if other column dont have null
 
---DROPT TABKE <talbe name>;
+--DROP TABKE <talbe name>;
 
 DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 "\i" <path> example wsl in widnow =>  /mnt/c/Users/48606/Downloads/person.sql  => download file to postgresql  
