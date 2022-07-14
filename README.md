@@ -1,25 +1,25 @@
----postgress shell => connecto to server on window /
-- server local or url /
-atabase /
-port /
-username /
-password /
+---postgress shell => connecto to server on window \
+- server local or url \
+atabase \
+port \
+username \
+password \
 
-\q => quit from shell /
-help /
-\l => list of ddatabase
-/
-/
----create database:/
-CREATE DATABASE name; => importent semicolen/
-\l => list of databases/
-/
----connect to concreat database /
-psql --help => show commands /
-psql -h localhost -p 5432 -U postgres test => localhost/url to database /
- /
-\c <database name> => connect to database, switch between database
-/
+\q => quit from shell \
+help \
+\l => list of ddatabase \
+\
+\
+---create database: \
+CREATE DATABASE name; => importent semicolen \
+\l => list of databases \
+\
+---connect to concreat database \
+psql --help => show commands \
+psql -h localhost -p 5432 -U postgres test => localhost/url to database \
+ \
+\c <database name> => connect to database, switch between database \
+\
 DROP DATABASE => delete database
 
 ---CREATE USER with rights
