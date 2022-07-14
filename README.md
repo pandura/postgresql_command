@@ -134,23 +134,23 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 
 ---Agregation
 -- MAX()
-	SELECT MAX(<column>) FROM -table_name-;
+	SELECT MAX(-column-) FROM -table_name-;
 	example => SELECT MAX(price) FROM car;
 -- MIN()
-	SELECT MIN(<column>) FROM <table name>;
+	SELECT MIN(-column-) FROM -table_name-;
 	example => SELECT MIN(price) FROM car;
 -- AVG()
-	SELECT AVG(<column>) FROM <table name>;
+	SELECT AVG(-column-) FROM -table_name-;
 	example => SELECT AVG(price) FROM car;
 -- SUM()
-	SELECT SUM(<column>) FROM <table name>;
+	SELECT SUM(-column-) FROM -table_name-;
 	example => SELECT SUM(price) FROM car;
 -- ROUND(AVG())
-	SELECT ROUND(AVG(<column>), decimal) FROM <table name>;
+	SELECT ROUND(AVG(-column-), decimal) FROM -table_name-;
 	example => SELECT ROUND(AVG(price), 2) FROM car;
 --Agregation wit GROUP BY
 -- MAX()
-	SELECT <column_name>, ... MAX(<column>) FROM <table name> GROUP BY <column_name>;
+	SELECT -column_name-, ... MAX(-column-) FROM -table_name- GROUP BY -column_name-;
 	example => SELECT make, model,  MAX(price) FROM car GROUP BY make, model;
 
 ---ARTHIMETIC OPERATORS - ROUND
@@ -161,7 +161,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	SELECT price ROUND(price * 0.10), ROUND(price - ROUND(price * 0.1, 2), 2) FROM car;
 
 ---ALIAS
-	SELECT price price * 0.10 AS <alias>FROM car;
+	SELECT price price * 0.10 AS -alias-FROM car;
 	example SELECT price ROUND(price * 0.10) AS <alias>, ROUND(price - ROUND(price * 0.1, 2), 2) AS <alias> FROM car;
 
 ---COALESCE => default value if is not present
@@ -169,7 +169,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	example => SELECT COALESCE(null, 1) => if null default 1
 	example => SELECT COALESCE(null, null, 1) if first value is not present try secound
 	
-	example => SELECT COALESCE(<colum nema>, 1) FROM <Table name> => if column name === null ? 1
+	example => SELECT COALESCE(-colum_nema-, 1) FROM -table_name- => if column name === null ? 1
 		SELECT COALESCE(email, "Email not provided") FROM person
 
 ---NULLIF => if first argument is not equel second return first if is will be null => help secure error in devision by 0
@@ -191,7 +191,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW())
 
 --AGE FUNCTION => calculate from now
-	SELECT <column_name> AGE(NOW(), <column with type dATE>) FROM <data_name>
+	SELECT -column_name- AGE(NOW(), -column_with_type_DATE-) FROM -data_name-
 	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person
 	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person
 
