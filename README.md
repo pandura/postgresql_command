@@ -15,7 +15,7 @@ CREATE DATABASE name; => importent semicolen
 \l => list of databases
 
 ---connect to concreat database
-tsql --help => show commands
+psql --help => show commands
 psql -h localhost -p 5432 -U postgres test => localhost/url to database
 
 \c <database name> => connect to database, switch between database
@@ -37,10 +37,10 @@ INHERIT - the user being created inherits some default options, optional.
 LOGIN - the user being created has the right to log in.
 
 \du => list of owners with roles
-DROP USER <name> => delete user Data Database of user should be delete
+DROP USER -name- => delete user Data Database of user should be delete
 
 ---CREATE TABLE IN DATABASE
--- create table without constrains =>CREATE TABLE <name_table> (column name + data type + constrains if any) => 
+-- create table without constrains =>CREATE TABLE -name_table- (column name + data type + constrains if any) => 
 	example: CREATE TABLE person (id int, 
 					first_name VARCHAR(50), 
 					last_anem VARCHAR(50), 
@@ -50,7 +50,7 @@ DROP USER <name> => delete user Data Database of user should be delete
 	when we use "(" and enter we can write in next line CREATE TABLE person (
 										id INT,
 										first_Name VARCHAR(50),...)
-\d deeper \d <table name> check list of table in database 
+\d deeper \d -table name- check list of table in database 
 \dt table list
 	
 -- create table with constrains => 
@@ -61,10 +61,10 @@ DROP USER <name> => delete user Data Database of user should be delete
 					data_of_birth TIMESTAMP/DATE NOT NULL,
 					email VARCHAR(150))
 	type BIGSERIAL generate sequence in table
-DROP TABLE <name> => delete table
+DROP TABLE -name- => delete table
 
 ---Insert Into table
---INSERT INTO <tablename>(columns1, columns2, coluns3, ...) VALUES (value1, value2, value3, ...)
+--INSERT INTO -tablename-(columns1, columns2, coluns3, ...) VALUES (value1, value2, value3, ...)
 	example => INSERT INTO person (first_name, last_name, gender, data_of_birth) VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => posible is in 2 lines 
 		INSERT INTO person (first_name, last_name, gender, data_of_birth) <enter>
 			VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => possible multiple data VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ), ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' )
@@ -75,23 +75,23 @@ check tables SELECT * FROM person
 
 INSERT INTO person(email) VALUES ('test') => possible if other column dont have null
 
---DROP TABKE <talbe name>;
+--DROP TABKE -talbe name-;
 
 DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
-"\i" <path> example wsl in widnow =>  /mnt/c/Users/48606/Downloads/person.sql  => download file to postgresql  
+"\i" -path- example wsl in widnow =>  /mnt/c/Users/48606/Downloads/person.sql  => download file to postgresql  
 
 
----SELECT <column> FROM <table name>
+---SELECT -column- FROM -table name-
 --ORDER BY
-	SELECT <column> FROM <Table name> ORDER BY <column name> ASC/DESC	
+	SELECT -column- FROM -Table name- ORDER BY -column name- ASC/DESC	
 --DELETE DUPLICATE
 - DISTINCT - unique value of column
-	SELECT DISTINCT <column> FROM <Table name> ORDER BY <column name> ASC/DESC
+	SELECT DISTINCT -column_name FROM -Table_name ORDER BY -column_name ASC/DESC
 --WHERE condition
-	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' 
+	SELECT -column_name- FROM -Table_name- WHERE -name_column- = '-string-' 
 -Anather condition
-	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' AND / OR <name of column> = '<string>/ number'
-	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' AND / OR (<name of column> = '<string>/ number' OR <name of column> = '<string>/ number')
+	SELECT -column- FROM -Table_name- WHERE -name_column- = '-string-' AND / OR -name_column- = 'string/ number'
+	SELECT -column- FROM -Table_name- WHERE -name_column- = '-string-' AND / OR (-name_column- = 'string/ number' OR -name_column- = '-string-/ number')
 ---Comparison
 -- SELECT 1 = 1; true
 -- SELECT 1 > 0; true
@@ -99,23 +99,23 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 -- SELECT 1 <> 2; true => <> NOT
 
 --- LIMIT
-	SELECT <column> FROM <table name> LIMIT 5;
+	SELECT -column- FROM -table_name- LIMIT 5;
 --- OFFSET - exclude
-	SELECT <column> FROM <table name> OFFSET 5;
-	SELECT <column> FROM <table name> OFFSET 5 LIMIT 5; => exclude first 5 then limit to 5
+	SELECT -column- FROM -table_name- OFFSET 5;
+	SELECT -column- FROM -table_name- OFFSET 5 LIMIT 5; => exclude first 5 then limit to 5
 --- FETCH => limit/exclude => use seldom
-	SELECT <column> FROM <table name> OFFSET <Number> FETCH FIRST 5 ROW ONLY;
+	SELECT -column- FROM -table_name- OFFSET -Number- FETCH FIRST 5 ROW ONLY;
 	OFFSET start { ROW | ROWS } FETCH { FIRST | NEXT } [ row_count ] { ROW | ROWS } ONLY
 --- IN => array of values
 
-	SELECT <column> FROM <Table name> WHERE <name of column> = '<string>' OR <name of column> = '<string>/ number'
-	SELECT <column> FROM <Table name> WHERE <name of column> IN ('<value from column>', '<value from column>', '<value from column>')
+	SELECT -column- FROM -table_name- WHERE -name_column- = '-string-' OR -name_column- = 'string/ number'
+	SELECT -column- FROM -table_name- WHERE -name_column- IN ('-value_from_column-', '-value_column-', '-value_from_column-')
 
 --- BETWEEN
-	SELECT <column> FROM <Table name> WHERE <name of column> BETWEEN DATE '2001-01-01' AND '2022-01-01'
+	SELECT -column- FROM -Table_name- WHERE -name_of_column- BETWEEN DATE '2001-01-01' AND '2022-01-01'
 
 --- LIKE
-	SELECT <column> FROM <Table name> WHERE <name of column> LIKE ('<pattern>')
+	SELECT -column- FROM -table_name- WHERE -name_of_column- LIKE ('-pattern-')
 	example => SELECT * FROM person WHERE email LIKE ('%@gmail.com'); => % any character
 	example => SELECT * FROM person WHERE email LIKE ('%@gmail.%'); => % any character
 	example => SELECT * FROM person WHERE email LIKE '______'; => _ concreate quantity of character in this case 6
@@ -123,18 +123,18 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator
 --- ILIKE => like LIKE case sensenitive
 
 --- GROUP BY => agregate data base of column
-	SELECT <column> function() FROM <Table name> GROUP BY <column>
+	SELECT -column- function() FROM -table_name- GROUP BY -column-
 	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth
 
 	function of agregate https://www.postgresql.org/docs/9.5/functions-aggregate.html
 
 --- GROUP BY... HAVING => GROUP BY WITH CONDITION
-	SELECT <column> function(*) FROM <Table name> GROUP BY <column> HAVING COUNT(*) > 5
+	SELECT -column- function(*) FROM -Table_name- GROUP BY -column- HAVING COUNT(*) > 5
 	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5
 
 ---Agregation
 -- MAX()
-	SELECT MAX(<column>) FROM <table name>;
+	SELECT MAX(<column>) FROM -table_name-;
 	example => SELECT MAX(price) FROM car;
 -- MIN()
 	SELECT MIN(<column>) FROM <table name>;
