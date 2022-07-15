@@ -116,90 +116,90 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 \
 --- LIKE \
 	SELECT -column- FROM -table_name- WHERE -name_of_column- LIKE ('-pattern-') \
-	example => SELECT * FROM person WHERE email LIKE ('%@gmail.com'); => % any character
-	example => SELECT * FROM person WHERE email LIKE ('%@gmail.%'); => % any character
-	example => SELECT * FROM person WHERE email LIKE '______'; => _ concreate quantity of character in this case 6
-	example => SELECT * FROM person WHERE email LIKE ('%@gmail.__'); => _ concreate quantity of character in this case 2
---- ILIKE => like LIKE case sensenitive
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.com'); => % any character \
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.%'); => % any character \
+	example => SELECT * FROM person WHERE email LIKE '______'; => _ concreate quantity of character in this case 6 \
+	example => SELECT * FROM person WHERE email LIKE ('%@gmail.__'); => _ concreate quantity of character in this case 2 \
+--- ILIKE => like LIKE case sensenitive \
 
---- GROUP BY => agregate data base of column
-	SELECT -column- function() FROM -table_name- GROUP BY -column-
-	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth
+--- GROUP BY => agregate data base of column \
+	SELECT -column- function() FROM -table_name- GROUP BY -column- \
+	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth \
 
-	function of agregate https://www.postgresql.org/docs/9.5/functions-aggregate.html
+	function of agregate https://www.postgresql.org/docs/9.5/functions-aggregate.html \
 
---- GROUP BY... HAVING => GROUP BY WITH CONDITION
-	SELECT -column- function(*) FROM -Table_name- GROUP BY -column- HAVING COUNT(*) > 5
-	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5
+--- GROUP BY... HAVING => GROUP BY WITH CONDITION \
+	SELECT -column- function(*) FROM -Table_name- GROUP BY -column- HAVING COUNT(*) > 5 \
+	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5 \
 
----Agregation
--- MAX()
-	SELECT MAX(-column-) FROM -table_name-;
-	example => SELECT MAX(price) FROM car;
--- MIN()
-	SELECT MIN(-column-) FROM -table_name-;
-	example => SELECT MIN(price) FROM car;
--- AVG()
-	SELECT AVG(-column-) FROM -table_name-;
-	example => SELECT AVG(price) FROM car;
--- SUM()
-	SELECT SUM(-column-) FROM -table_name-;
-	example => SELECT SUM(price) FROM car;
--- ROUND(AVG())
-	SELECT ROUND(AVG(-column-), decimal) FROM -table_name-;
-	example => SELECT ROUND(AVG(price), 2) FROM car;
---Agregation wit GROUP BY
--- MAX()
-	SELECT -column_name-, ... MAX(-column-) FROM -table_name- GROUP BY -column_name-;
-	example => SELECT make, model,  MAX(price) FROM car GROUP BY make, model;
+---Agregation \
+-- MAX() \
+	SELECT MAX(-column-) FROM -table_name-; \
+	example => SELECT MAX(price) FROM car; \
+-- MIN() \
+	SELECT MIN(-column-) FROM -table_name-; \
+	example => SELECT MIN(price) FROM car; \
+-- AVG() \
+	SELECT AVG(-column-) FROM -table_name-; \
+	example => SELECT AVG(price) FROM car; \
+-- SUM() \
+	SELECT SUM(-column-) FROM -table_name-; \
+	example => SELECT SUM(price) FROM car; \
+-- ROUND(AVG()) \
+	SELECT ROUND(AVG(-column-), decimal) FROM -table_name-; \
+	example => SELECT ROUND(AVG(price), 2) FROM car; \
+--Agregation wit GROUP BY \
+-- MAX() \
+	SELECT -column_name-, ... MAX(-column-) FROM -table_name- GROUP BY -column_name-; \
+	example => SELECT make, model,  MAX(price) FROM car GROUP BY make, model; \
+\
+---ARTHIMETIC OPERATORS - ROUND \
 
----ARTHIMETIC OPERATORS - ROUND
-
-	SELECT price price * 0.10 FROM car; => add additonal column ?column? with 10% price
-	SELECT price ROUND(price * 0.10) FROM car;
+	SELECT price price * 0.10 FROM car; => add additonal column ?column? with 10% price \
+	SELECT price ROUND(price * 0.10) FROM car; \
 	
-	SELECT price ROUND(price * 0.10), ROUND(price - ROUND(price * 0.1, 2), 2) FROM car;
+	SELECT price ROUND(price * 0.10), ROUND(price - ROUND(price * 0.1, 2), 2) FROM car; \
+\
+---ALIAS \
+	SELECT price price * 0.10 AS -alias-FROM car; \
+	example SELECT price ROUND(price * 0.10) AS <alias>, ROUND(price - ROUND(price * 0.1, 2), 2) AS <alias> FROM car; \
+\
+---COALESCE => default value if is not present \
 
----ALIAS
-	SELECT price price * 0.10 AS -alias-FROM car;
-	example SELECT price ROUND(price * 0.10) AS <alias>, ROUND(price - ROUND(price * 0.1, 2), 2) AS <alias> FROM car;
-
----COALESCE => default value if is not present
-
-	example => SELECT COALESCE(null, 1) => if null default 1
-	example => SELECT COALESCE(null, null, 1) if first value is not present try secound
+	example => SELECT COALESCE(null, 1) => if null default 1 \
+	example => SELECT COALESCE(null, null, 1) if first value is not present try secound \
 	
-	example => SELECT COALESCE(-colum_nema-, 1) FROM -table_name- => if column name === null ? 1
-		SELECT COALESCE(email, "Email not provided") FROM person
+	example => SELECT COALESCE(-colum_nema-, 1) FROM -table_name- => if column name === null ? 1 \
+		SELECT COALESCE(email, "Email not provided") FROM person \
 
----NULLIF => if first argument is not equel second return first if is will be null => help secure error in devision by 0
-	example => SELECT NULLIF(1, 10); result 1
-	example SELECT 10/ NULLIF(0, 0) => null not error
-	example SELECT COALESCE(10 / NULLIF(0, 0), 0);
+---NULLIF => if first argument is not equel second return first if is will be null => help secure error in devision by 0 \
+	example => SELECT NULLIF(1, 10); result 1 \
+	example SELECT 10/ NULLIF(0, 0) => null not error \
+	example SELECT COALESCE(10 / NULLIF(0, 0), 0); \
+\
+---Timestamps => https://www.postgresql.org/docs/current/datatype-datetime.html \
+	example => SELECT NOW() \
+	example => SELECT NOW()::DATE; y-m-d \
+	example => SELECT NOW()::TIME; h:m:s \
+--Subtracting dates => add or minus date \
+	example => SELECT NOW() -/+  INTERVAL '1 YEAR'; \
+	example => SELECT NOW() -/+  INTERVAL '1 MONTHS'; \
+	example => SELECT NOW() -/+  INTERVAL '1 DAYS'; \
+	example => SELECT NOW()::DATE -/+  INTERVAL '1 DAYS'; \
+	example => SELECT (NOW() -/+  INTERVAL '1 DAYS')::DATE; \
+--Extract time => separetl from date \
+	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW()) \\
 
----Timestamps => https://www.postgresql.org/docs/current/datatype-datetime.html
-	example => SELECT NOW()
-	example => SELECT NOW()::DATE; y-m-d
-	example => SELECT NOW()::TIME; h:m:s
---Subtracting dates => add or minus date
-	example => SELECT NOW() -/+  INTERVAL '1 YEAR';
-	example => SELECT NOW() -/+  INTERVAL '1 MONTHS';
-	example => SELECT NOW() -/+  INTERVAL '1 DAYS';
-	example => SELECT NOW()::DATE -/+  INTERVAL '1 DAYS';
-	example => SELECT (NOW() -/+  INTERVAL '1 DAYS')::DATE;
---Extract time => separetl from date
-	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW())
-
---AGE FUNCTION => calculate from now
-	SELECT -column_name- AGE(NOW(), -column_with_type_DATE-) FROM -data_name-
-	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person
-	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person
-
+--AGE FUNCTION => calculate from now\
+	SELECT -column_name- AGE(NOW(), -column_with_type_DATE-) FROM -data_name- \
+	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person \
+	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person \
+\
 PrimaryKEY
-
+\\
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
-
-linux command 
+\\\\
+linux command \ 
 -pwd path to current folder
