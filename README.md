@@ -103,19 +103,19 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 --- OFFSET - exclude \
 	SELECT -column- FROM -table_name- OFFSET 5; \
 	SELECT -column- FROM -table_name- OFFSET 5 LIMIT 5; => exclude first 5 then limit to 5 \
---- FETCH => limit/exclude => use seldom
-	SELECT -column- FROM -table_name- OFFSET -Number- FETCH FIRST 5 ROW ONLY;
-	OFFSET start { ROW | ROWS } FETCH { FIRST | NEXT } [ row_count ] { ROW | ROWS } ONLY
---- IN => array of values
+--- FETCH => limit/exclude => use seldom \
+	SELECT -column- FROM -table_name- OFFSET -Number- FETCH FIRST 5 ROW ONLY; \
+	OFFSET start { ROW | ROWS } FETCH { FIRST | NEXT } [ row_count ] { ROW | ROWS } ONLY \
+--- IN => array of values \
 
-	SELECT -column- FROM -table_name- WHERE -name_column- = '-string-' OR -name_column- = 'string/ number'
-	SELECT -column- FROM -table_name- WHERE -name_column- IN ('-value_from_column-', '-value_column-', '-value_from_column-')
-
---- BETWEEN
-	SELECT -column- FROM -Table_name- WHERE -name_of_column- BETWEEN DATE '2001-01-01' AND '2022-01-01'
-
---- LIKE
-	SELECT -column- FROM -table_name- WHERE -name_of_column- LIKE ('-pattern-')
+	SELECT -column- FROM -table_name- WHERE -name_column- = '-string-' OR -name_column- = 'string/ number' \
+	SELECT -column- FROM -table_name- WHERE -name_column- IN ('-value_from_column-', '-value_column-', '-value_from_column-') \
+\
+--- BETWEEN \
+	SELECT -column- FROM -Table_name- WHERE -name_of_column- BETWEEN DATE '2001-01-01' AND '2022-01-01' \
+\
+--- LIKE \
+	SELECT -column- FROM -table_name- WHERE -name_of_column- LIKE ('-pattern-') \
 	example => SELECT * FROM person WHERE email LIKE ('%@gmail.com'); => % any character
 	example => SELECT * FROM person WHERE email LIKE ('%@gmail.%'); => % any character
 	example => SELECT * FROM person WHERE email LIKE '______'; => _ concreate quantity of character in this case 6
