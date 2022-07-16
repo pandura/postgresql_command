@@ -61,6 +61,9 @@ DROP USER -name- => delete user Data Database of user should be delete \
 					data_of_birth TIMESTAMP/DATE NOT NULL,
 					email VARCHAR(150)) \
 	type BIGSERIAL generate sequence in table \
+	/
+DROP CONSTRAINT => example: ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)//
+
 DROP TABLE -name- => delete table \
 \
 ---Insert Into table \
@@ -69,7 +72,10 @@ DROP TABLE -name- => delete table \
 		INSERT INTO person (first_name, last_name, gender, data_of_birth) <enter>
 			VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); => possible multiple data VALUES ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ), ('Grzegorz', 'Dura', 'Male', Date '1981-01-01' ); \
 
-
+/
+--DELETE ROW IN TABLE /
+DELETE FROM -table_name- WHERE -condition- /
+example => DELETE FROM person WHERE id=1;
 
 check tables SELECT * FROM person \
 \
@@ -195,7 +201,11 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person \
 	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person \
 \
-PrimaryKEY
+---PrimaryKEY - value wich uniquerly identify a record in table /
+DROP CONSTRAINT/ example => ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)//
+ADDING PRIMARY KEY to existed table/
+ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like id => id must by unique / 
+
 \\
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
