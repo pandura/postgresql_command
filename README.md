@@ -136,9 +136,20 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 
 --- GROUP BY... HAVING => GROUP BY WITH CONDITION \
 	SELECT -column- function(*) FROM -Table_name- GROUP BY -column- HAVING COUNT(*) > 5 \
-	example => SELECT country_of_birth COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5 \
+	example => SELECT country_of_birth, COUNT(*) FROM person GROUP BY country_of_birth HAVING COUNT(*) > 5 \
 
 ---Agregation \
+
+--COUNT function - quantity of element - no null \
+	SELECT COUNT(*) FROM -table_name- \
+	SELECT email, COUNT(*) FROM person GROUP BY email;- count email by grouping \
+	example => SELECT job_id,COUNT(*) AS "Number of employees" \
+	FROM employees \
+	WHERE salary<12000 \
+	GROUP BY job_id \
+	HAVING COUNT(*)>=5 \
+	ORDER BY COUNT(*) DESC;
+ \\
 -- MAX() \
 	SELECT MAX(-column-) FROM -table_name-; \
 	example => SELECT MAX(price) FROM car; \
@@ -201,12 +212,34 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 	exampe => SELECT geneder, first_name, last_na,e, AGE(NOW(), date_of_birth) FROM person \
 	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person \
 \
----PrimaryKEY - value wich uniquerly identify a record in table /
-DROP CONSTRAINT/ example => ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)//
-ADDING PRIMARY KEY to existed table/
-ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like id => id must by unique / 
+---PrimaryKEY - value wich uniquerly identify a record row in table \
+DROP CONSTRAINT/ example => ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)\\
+ADDING PRIMARY KEY to existed table \
+ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like id => id must by unique \ 
+\
+
+
+--- Unique Constraints - help have uniqe value per column example email - error when add this same value \
+	- FIRST METHOD => ALTER TABLE -table_name- ADD CONSTRAINT -name- UNIQUE(-name_of_column-)/UNIQUE(-name_of_column-, -name_of_column-, ...) \
+	- SECOUND METHOD => ALTER TABLE -table_name- ADD UNIQUE (-column name-);
+	example => ALTER TABLE person ADD CONSTRAINT unique_email_address UNIQUE(email) \
+--- Drup unique Constraint \
+	ALTER TABLE -table_name- DROP CONSTRAINT -name- \
+	example => ALTER TABLE person DROP CONSTRAINT unique_email_address; \
+--- CHECK CONSTRAINS - check if column compere values\
+	ALTER TABLE -table_name- ADD CONSTRAINT -name- CHECK (condition)\
+	example: 
+	
 
 \\
+---UPDATE\
+UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
+example UPDATE person SET email = 'test@test.pl' WHERE id =1; \\
+---DELETE row \
+DELETE FROM person WHERE ...;
+example: DELETE FROM person Where id = 1;
+
+
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
