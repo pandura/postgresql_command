@@ -231,13 +231,13 @@ ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like
 	example: 
 	
 
-\\
----UPDATE\
+\
+---UPDATE \
 UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
 example UPDATE person SET email = 'test@test.pl' WHERE id =1; \\
 ---DELETE row \
-DELETE FROM person WHERE ...;
-example: DELETE FROM person Where id = 1;
+DELETE FROM person WHERE ...; \
+example: DELETE FROM person Where id = 1; \
 
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
