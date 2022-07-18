@@ -149,7 +149,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 	GROUP BY job_id \
 	HAVING COUNT(*)>=5 \
 	ORDER BY COUNT(*) DESC;
- \\
+ \ \
 -- MAX() \
 	SELECT MAX(-column-) FROM -table_name-; \
 	example => SELECT MAX(price) FROM car; \
@@ -205,7 +205,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 	example => SELECT NOW()::DATE -/+  INTERVAL '1 DAYS'; \
 	example => SELECT (NOW() -/+  INTERVAL '1 DAYS')::DATE; \
 --Extract time => separetl from date \
-	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW()) \\
+	SELECT EXTRACT(YEAR/MONTH/DAYS FROM NOW()) \ \
 
 --AGE FUNCTION => calculate from now\
 	SELECT -column_name- AGE(NOW(), -column_with_type_DATE-) FROM -data_name- \
@@ -213,7 +213,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 	exampe with extraction => SELECT geneder, first_name, last_na,e, EXTRACT(MONTH FROM AGE(NOW(), date_of_birth)) FROM person \
 \
 ---PrimaryKEY - value wich uniquerly identify a record row in table \
-DROP CONSTRAINT/ example => ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)\\
+DROP CONSTRAINT / example => ALTER TABLE person DROP CONSTRAINT person_pkey; (person_pkey => generate when primary key)\ \
 ADDING PRIMARY KEY to existed table \
 ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like id => id must by unique \ 
 \
@@ -223,26 +223,31 @@ ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like
 	- FIRST METHOD => ALTER TABLE -table_name- ADD CONSTRAINT -name- UNIQUE(-name_of_column-)/UNIQUE(-name_of_column-, -name_of_column-, ...) \
 	- SECOUND METHOD => ALTER TABLE -table_name- ADD UNIQUE (-column name-);
 	example => ALTER TABLE person ADD CONSTRAINT unique_email_address UNIQUE(email) \
---- Drup unique Constraint \
+--- Drop unique Constraint \
 	ALTER TABLE -table_name- DROP CONSTRAINT -name- \
 	example => ALTER TABLE person DROP CONSTRAINT unique_email_address; \
---- CHECK CONSTRAINS - check if column compere values\
+--- CHECK CONSTRAINS - generate constrains on base CHECK if condition is false then error \
 	ALTER TABLE -table_name- ADD CONSTRAINT -name- CHECK (condition)\
-	example: 
+	example: ALTER TABLE person ADD CONSTRAINT gender_constraint CHECK (gender = "F" OR gender = "M");
+\
 	
 
 \
 ---UPDATE \
 UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
-example UPDATE person SET email = 'test@test.pl' WHERE id =1; \\
----DELETE row \
+example UPDATE person SET email = 'test@test.pl' WHERE id =1; \
+---DELETE record\
+DELETE FROM -table-name- => delete all row\
 DELETE FROM person WHERE ...; \
-example: DELETE FROM person Where id = 1; \
+example: DELETE FROM person WHERE id = 1; \
+example: DELETE FROM person WHERE id = 1 AND country_of_birth = 'Poland'; \
 
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
-\\\\
+\
+\
+\
 linux command \ 
 -pwd path to current folder
