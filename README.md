@@ -246,7 +246,7 @@ example: DELETE FROM person WHERE id = 1 AND country_of_birth = 'Poland'; \
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
-\
+\test
 \
 \
 linux command \ 
