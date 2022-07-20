@@ -165,7 +165,7 @@ DATA GENERATOR => mockaroo => https://www.mockaroo.com/ => file generator \
 -- ROUND(AVG()) \
 	SELECT ROUND(AVG(-column-), decimal) FROM -table_name-; \
 	example => SELECT ROUND(AVG(price), 2) FROM car; \
---Agregation wit GROUP BY \
+--Agregation with GROUP BY \
 -- MAX() \
 	SELECT -column_name-, ... MAX(-column-) FROM -table_name- GROUP BY -column_name-; \
 	example => SELECT make, model,  MAX(price) FROM car GROUP BY make, model; \
@@ -236,17 +236,38 @@ ALTER TABLE person ADD PRIMARY KEY (id); => possible to add multiple values like
 ---UPDATE \
 UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
 example UPDATE person SET email = 'test@test.pl' WHERE id =1; \
+update multicolumn: UPDATE -table_name- SET -column_name- = 'value', -column_name- = 'value' WHERE ...
+\ 
+\
+---ADD COLUMN TO TABLE
+ALTER TABLE -table_name- ADD -new_column- TYPE\
+example ALTER TABLE person ADD dupa VARCHAR(20);
+\
+--DROP COLUMN OF TABLE\
+ALTER TABLE person DROP COLUMN dupa;\
+--RENAMTE COLUMN \
+ALTER TABLE person RENAME COLUMN dupa TO column_1;\
+
+
+
+\
 ---DELETE record\
 DELETE FROM -table-name- => delete all row\
 DELETE FROM person WHERE ...; \
 example: DELETE FROM person WHERE id = 1; \
 example: DELETE FROM person WHERE id = 1 AND country_of_birth = 'Poland'; \
-
+\
+\
+---ON CONFLICT - handle conflict when column has UNIQUE value other ways ON CONFLICT doesent function /
+--DO NOTHING - INSERT INTO (-name_column-, ...) VALUES (-values-) ON CONFLICT (-potential_name_column_conflict-) DO NOTHING;\
+example => INSERT INTO person (id, first_name, last_name, email, gender, data_of_birth, country_of_birth) VALUES (9999, 'GRZEGORZ', 'DURA', 'test141@sun1.com', 'F', '1981-03-23', 'POLAND') ON CONFLICT (email) DO NOTHING;\
+--DO UPDATE \ 
+example => INSERT INTO person (id, first_name, last_name, email, gender, data_of_birth, country_of_birth) VALUES (9999, 'GRZEGORZ', 'DURA', 'test1411@sun1.com', 'F', '1981-03-23', 'POLAND') ON CONFLICT DO UPDATE SET first_name = EXCLUDED.first_name, email = EXCLUDED.email;\
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
-\test
+\
 \
 \
 linux command \ 
