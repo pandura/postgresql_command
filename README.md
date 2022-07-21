@@ -263,7 +263,37 @@ example: DELETE FROM person WHERE id = 1 AND country_of_birth = 'Poland'; \
 example => INSERT INTO person (id, first_name, last_name, email, gender, data_of_birth, country_of_birth) VALUES (9999, 'GRZEGORZ', 'DURA', 'test141@sun1.com', 'F', '1981-03-23', 'POLAND') ON CONFLICT (email) DO NOTHING;\
 --DO UPDATE \ 
 example => INSERT INTO person (id, first_name, last_name, email, gender, data_of_birth, country_of_birth) VALUES (9999, 'GRZEGORZ', 'DURA', 'test1411@sun1.com', 'F', '1981-03-23', 'POLAND') ON CONFLICT DO UPDATE SET first_name = EXCLUDED.first_name, email = EXCLUDED.email;\
+\
+\
+---FOREIGN KEYS => column which reference to primary key in another table. This column has value type this same like primary key in anather table. Foreign Keys is UNIQUE
+--BUILD RELATIONSIP => two table in database\
+	ONE person can have only one car (UNIQUE(car_id))\
+CREATE TABLE person (
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(150),
+	gender VARCHAR(7) NOT NULL,
+	data_of_birth DATE NOT NULL,
+	country_of_birth VARCHAR(50) NOT NULL,
+	car_id BIGINT REFERENCES car (id),
+	UNIQUE(car_id)
 
+);\
+CREATE TABLE car ( 
+id BIGSERIAL NOT NULL PRIMARY KEY, 
+make VARCHAR(100) NOT NULL, 
+model VARCHAR(100) NOT NULL, 
+price NUMERIC(19, 2) NOT NULL
+);  \
+\
+--Update Foreign Keys\
+UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
+example UPDATE person SET car_id = 1 WHERE id = 2;/
+
+/
+/
+/
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
