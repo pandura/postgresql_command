@@ -1,4 +1,4 @@
----postgress shell => connecto to server on window \
+Mi---postgress shell => connecto to server on window \
 - server local or url \
 atabase \
 port \
@@ -277,7 +277,7 @@ CREATE TABLE person (
 	data_of_birth DATE NOT NULL,
 	country_of_birth VARCHAR(50) NOT NULL,
 	car_id BIGINT REFERENCES car (id),
-	UNIQUE(car_id)
+	UNIQUE(car_id)\
 
 );\
 CREATE TABLE car ( 
@@ -302,3 +302,4 @@ what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 \
 linux command \ 
 -pwd path to current folder
+
