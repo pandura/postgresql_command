@@ -1,4 +1,4 @@
-Mi---postgress shell => connecto to server on window \
+---postgress shell => connecto to server on window \
 - server local or url \
 atabase \
 port \
@@ -277,7 +277,7 @@ CREATE TABLE person (
 	data_of_birth DATE NOT NULL,
 	country_of_birth VARCHAR(50) NOT NULL,
 	car_id BIGINT REFERENCES car (id),
-	UNIQUE(car_id)\
+	UNIQUE(car_id)
 
 );\
 CREATE TABLE car ( 
@@ -289,11 +289,27 @@ price NUMERIC(19, 2) NOT NULL
 \
 --Update Foreign Keys\
 UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
-example UPDATE person SET car_id = 1 WHERE id = 2;/
-
+example UPDATE person SET car_id = 1 WHERE id = 2;/ 
+\
+---INNER HOINS => method of combaine two tables, method take all common records not this which don't have FOREIGN KEYS. Importent si Foreign keys, one table direct to second \
+SELECT * FROM -one_table_name- JOIN -two_table_name- ON -one_table_name-.forein_key = -two_table_name-.id \
+example => SELECT * FROM person JOIN car ON person.car_id = car.id; \
+\ 
+\
+to show in better view \x => expanded display on, onother \d dispaly of \ 
+\
+to show column what we want SELECT -one_table_name-.column1, -one_table_name-.column2, -two_table_name-.column1, -two_table_name-.column2 FROM -one_table_name- JOIN -two_table_name- ON -one_table_name-.forein_key = -two_table_name-.id
+example SELECT person.fist_name, car.make, car.model, car.price FROM -one_table_name- JOIN -two_table_name- ON -one_table_name-.forein_key = -two_table_name-.id
 /
-/
-/
+---LEFT JOINS =>method of combaine two tables, method take all recods from left table (event don't match) and common records . Importent is Foreign keys, one table direct to second \
+SELECT * FROM -one_table_name- LEFT JOIN -two_table_name- ON -one_table_name-.forein_key = -two_table_name-.id \
+example => SELECT * FROM person LEFT JOIN car ON person.car_id = car.id; => get also people who don't have car \
+ SELECT * FROM person LEFT JOIN car ON person.car_id = car.id WHERE car.* IS NULL; => get all people who don't have car \
+SELECT * FROM person WHERE car_id IS NULL
+\
+value IS NULL => return TRUE, value = NULL return false
+\
+-one_table_name-.* => means all tables
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
@@ -302,4 +318,3 @@ what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 \
 linux command \ 
 -pwd path to current folder
-
