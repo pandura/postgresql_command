@@ -291,7 +291,10 @@ price NUMERIC(19, 2) NOT NULL
 UPDATE -table_name- SET -column_name- = 'value' WHERE ... \
 example UPDATE person SET car_id = 1 WHERE id = 2;/ 
 \
----INNER HOINS => method of combaine two tables, method take all common records not this which don't have FOREIGN KEYS. Importent si Foreign keys, one table direct to second \
+--DELETE records with foreign keys records which has foreign key which is use in other table we can't delete with method DELETE FROM car WHERE id = 111; To delete we mast first delete record where foreign key is used or update this record \
+
+\
+---INNER JOINS => method of combaine two tables, method take all common records not this which don't have FOREIGN KEYS. Importent si Foreign keys, one table direct to second \
 SELECT * FROM -one_table_name- JOIN -two_table_name- ON -one_table_name-.forein_key = -two_table_name-.id \
 example => SELECT * FROM person JOIN car ON person.car_id = car.id; \
 \ 
@@ -310,6 +313,14 @@ SELECT * FROM person WHERE car_id IS NULL
 value IS NULL => return TRUE, value = NULL return false
 \
 -one_table_name-.* => means all tables
+\
+\
+---GENERATE csv\
+\copy (SELECT * FROM -table name- ...) TO -destination/filename.csv- DELIMITER ',' CSV HEADER \
+example => \copy (SELECT * FROM person LEFT JOIN car ON person.car_id = car.id) TO '/mnt/c/Users/48606/Desktop/testowanie/result' DELIMITER ',' CSV HEADER;
+
+
+
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
 
@@ -318,3 +329,4 @@ what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 \
 linux command \ 
 -pwd path to current folder
+/mnt/c/Users/48606/Desktop/testowanie     
