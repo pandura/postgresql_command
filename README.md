@@ -318,6 +318,20 @@ value IS NULL => return TRUE, value = NULL return false
 ---GENERATE csv\
 \copy (SELECT * FROM -table name- ...) TO -destination/filename.csv- DELIMITER ',' CSV HEADER \
 example => \copy (SELECT * FROM person LEFT JOIN car ON person.car_id = car.id) TO '/mnt/c/Users/48606/Desktop/testowanie/result' DELIMITER ',' CSV HEADER;
+\
+\
+---Serial & Sequences => BIGSERIAL type => generate new sequence/table which has "last_value", "log_cnt", 'is_called'. Table with BIGSERIAL has column default with function nextval('-table_name-'::regclass) wich increase value in last_value \
+example => nextval('person_id_seq'::regclass) is default when create BIGSERIAL => change value related toperson_id_seq
+--restart last value in table person_id_seq which was generate with BIGSERIAL \
+ALTER SEQUENCE -table_name_id_seq- RESTART WITH -value- \ 
+example => ALTER SEQUENCE person_id_seq RESTART WITH 10 \
+\
+--EXTENSION \
+SELECT * FROM pg_available_extensions; => list of available extensios \
+example extension => uuid-ossp => install CREATE EXTESION IF NOT EXISTS "uuid-ossp" \
+using extension \
+\df => list of function connection to installed extension \
+SELECT -function_name- => example => SELECT uuid_generate_v4();
 
 
 
