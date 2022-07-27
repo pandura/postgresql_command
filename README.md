@@ -331,9 +331,32 @@ SELECT * FROM pg_available_extensions; => list of available extensios \
 example extension => uuid-ossp => install CREATE EXTESION IF NOT EXISTS "uuid-ossp" \
 using extension \
 \df => list of function connection to installed extension \
-SELECT -function_name- => example => SELECT uuid_generate_v4();
-
-
+SELECT -function_name- => example => SELECT uuid_generate_v4(); \
+--using uuid as Primary key => importent UUID type in id \ 
+example => create table car ( \
+	car_uid UUID NOT NULL PRIMARY KEY, \
+	make VARCHAR(100) NOT NULL, \
+	model VARCHAR(100) NOT NULL, \
+	price NUMERIC(19, 2) NOT NULL \
+);\
+table car must be first becouse person table has references to car, other hend could be problem with relation and person will not generate
+\
+create table person ( \
+	person_uid UUID NOT NULL PRIMARY KEY, \
+	first_name VARCHAR(50) NOT NULL, \
+	last_name VARCHAR(50) NOT NULL, \
+	email VARCHAR(150), \
+	gender VARCHAR(7) NOT NULL, \
+	data_of_birth DATE NOT NULL, \
+	country_of_birth VARCHAR(50), \
+	car_uid UUID REFERENCES car(car_uid), \
+	UNIQUE(car_uid), \
+	UNIQUE(email) \
+); \
+insert into person (person_uid, first_name, last_name, email, gender, data_of_birth, country_of_birth) values (uuid_generate_v4(),'Daniele', 'Luxmoore', 'dluxmoore0@ow.ly', 'F', '2022-06-30', 'Morocco'); \
+insert into car (car_uid, make, model, price) values (uuid_generate_v4(), 'Chevrolet', 'Silverado 1500', 68947.35);\
+\
+example => SELECT * FROM person JOIN car ON person.car_uid = car.car_uid; => importent if the car_uid is using in two table (foreign key and primary key) we can write shorten SELECT * FROM person JOIN car USING (car_uid);  \
 
 what next => https://www.youtube.com/watch?v=ldYcgPKEZC8&t=1129s
 
